@@ -1,12 +1,12 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": "Annual Electricity Consumption by Australian States",
+    "title": "Annual Electricity Consumption by Australian States (2023-24)",
     "width": 800,
     "height": 600,
     "projection": {"type": "equalEarth"},
     "data": {
-      "url": "https://raw.githubusercontent.com/MZ244/Data-Visualization2--A2/refs/heads/main/ne_110m_admin_0_countries.json",
-      "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+      "url": "https://raw.githubusercontent.com/MZ244/Data-Visualization2--A2/refs/heads/main/ne_10m_admin_1_states_provinces.json",
+      "format": {"type": "topojson", "feature": "ne_10m_admin_1_states_provinces"}
     },
     "transform": [
       {
@@ -17,26 +17,25 @@
             "format": {"type": "csv"}
           },
           "key": "State",  
-          "fields": ["State Code"]  
+          "fields": ["State Code", "2023-24"]  
         }
       }
-      
     ],
     "mark": {"type": "geoshape", "stroke": "white", "strokeWidth": 1},
     "encoding": {
       "color": {
-        "field": "Total_Consumption",
+        "field": "2023-24",  
         "type": "quantitative",
         "scale": {
-          "type": "threshold",
-          "domain": [1000, 5000, 10000],  
+          "domain": [10, 30, 50],  
           "range": ["#fdbe85", "#fd8d3c", "#e6550d"]
         },
-        "legend": {"title": "Electricity Consumption (GWh)"}
+        "legend": {"title": "Electricity Consumption (GWh) in 2023-24"}
       },
       "tooltip": [
         {"field": "properties.NAME", "type": "nominal", "title": "State"},  
-        {"field": "State Code", "type": "quantitative", "title": "Total Electricity Consumption (GWh)"}
+        {"field": "State Code", "type": "nominal", "title": "State Code"},  
+        {"field": "2023-24", "type": "quantitative", "title": "Electricity Consumption (GWh) in 2023-24"}  
       ]
     }
   }
