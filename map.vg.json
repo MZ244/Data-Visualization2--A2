@@ -13,32 +13,30 @@
         "lookup": "properties.NAME",  
         "from": {
           "data": {
-            "url": "https://raw.githubusercontent.com/MZ244/Data-Visualization2--A2/refs/heads/main/AER_Demand%20and%20energy_Annual%20electricity%20consumption%20NEM%20DATA_2_20240730131706.CSV",
+            "url": "https://raw.githubusercontent.com/MZ244/Data-Visualization2--A2/refs/heads/main/reformatted_electricity_consumption_1999_2024.csv",
             "format": {"type": "csv"}
           },
-          "key": "State", 
-          "fields": ["Queensland", "New South Wales", "Victoria", "South Australia", "Tasmania", "Snowy", "NEM"]
+          "key": "State",  
+          "fields": ["State Code"]  
         }
-      },
-      {
-        "calculate": "datum['New South Wales'] + datum.Queensland + datum.Victoria + datum['South Australia'] + datum.Tasmania + datum.Snowy",
-        "as": "Total_Consumption"
       }
+      
     ],
-    "mark": {"type": "geoshape"},
+    "mark": {"type": "geoshape", "stroke": "white", "strokeWidth": 1},
     "encoding": {
       "color": {
         "field": "Total_Consumption",
         "type": "quantitative",
         "scale": {
           "type": "threshold",
-          "domain": [1000, 5000, 10000],
+          "domain": [1000, 5000, 10000],  
           "range": ["#fdbe85", "#fd8d3c", "#e6550d"]
-        }
+        },
+        "legend": {"title": "Electricity Consumption (GWh)"}
       },
       "tooltip": [
         {"field": "properties.NAME", "type": "nominal", "title": "State"},  
-        {"field": "Total_Consumption", "type": "quantitative", "title": "Total Electricity Consumption (GWh)"}
+        {"field": "State Code", "type": "quantitative", "title": "Total Electricity Consumption (GWh)"}
       ]
     }
   }
